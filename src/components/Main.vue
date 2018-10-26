@@ -1,55 +1,75 @@
 <template>
-  <v-app>
-    <v-app id="inspire">
-      <v-navigation-drawer
-        v-model="drawer"
-        fixed
-        app
-      >
-        <v-list dense class="pt-0">
-          <v-list-tile
-            v-for="item in items"
-            :key="item.title"
-            @click="sayItemTitle(item)"
-          >
-            <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-tile-action>
-
-            <v-list-tile-content>
-              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-      </v-navigation-drawer>
-      <v-toolbar
-        color="blue darken-3"
-        dark
-        app
-        fixed
-      >
-        <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-          <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-          <span class="hidden-sm-and-down">Личный кабинет</span>
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn
-          flat
-          v-if="currentUser"
+  <v-app id="inspire">
+    <v-navigation-drawer
+      v-model="drawer"
+      fixed
+      app
+    >
+      <v-list dense class="pt-0">
+        <v-list-tile
+          v-for="item in items"
+          :key="item.title"
+          @click="sayItemTitle(item)"
         >
-          {{ currentUser.name }}
-          <v-icon>person</v-icon>
-        </v-btn>
-      </v-toolbar>
-      <!-- Content -->
-      <v-content>
-        <v-container fluid fill-height>
-          <v-layout justify-center align-center>
-            Content
-          </v-layout>
-        </v-container>
-      </v-content>
-    </v-app>
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+    <v-toolbar
+      color="blue darken-3"
+      dark
+      app
+      fixed
+    >
+      <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
+        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+        <span class="hidden-sm-and-down">Личный кабинет</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-avatar
+        v-if="currentUser"
+        size="36px"
+        class="mr-2"
+      >
+        <img
+          src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+          alt="Avatar"
+        >
+      </v-avatar>
+      {{ currentUser ? currentUser.name : ''}}
+
+      <v-btn
+        flat
+        v-if="currentUser"
+        @click="logout"
+      >
+        <v-icon left>exit_to_app</v-icon>
+        Выход
+      </v-btn>
+
+      <v-icon
+        v-if="!currentUser"
+        left
+        class="pointer"
+        @click="toggleLoginForm"
+      >person</v-icon>
+
+    </v-toolbar>
+    <!-- Content -->
+    <v-content>
+      <v-container fluid fill-height>
+        <v-layout justify-center align-center>
+          Content
+        </v-layout>
+      </v-container>
+    </v-content>
+    <login-form-dialog></login-form-dialog>
   </v-app>
 </template>
 
@@ -116,6 +136,12 @@ export default {
   methods: {
     sayItemTitle (item) {
       alert(item.title)
+    },
+    toggleLoginForm () {
+      this.$store.dispatch('toggleLoginFormDialog')
+    },
+    logout () {
+      this.$store.dispatch('testLogout')
     }
   }
 }
@@ -123,5 +149,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-
 </style>

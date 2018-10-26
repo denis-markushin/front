@@ -1,13 +1,27 @@
 export default {
   state: {
-    // user: {
-    //   id: 1,
-    //   name: 'Максим Абрамов'
-    // }
     user: null
+    // user: null
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    testLogin (state) {
+      state.user = {
+        id: 1,
+        name: 'Максим Абрамов'
+      }
+    },
+    testLogout (state) {
+      state.user = null
+    }
+  },
+  actions: {
+    testLogin ({ commit }) {
+      commit('testLogin')
+    },
+    testLogout ({ commit }) {
+      commit('testLogout')
+    }
+  },
   getters: {
     getCurrentUser (state) {
       return state.user

@@ -8,9 +8,12 @@ import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.scss'
 import App from './App'
 import Main from './components/Main'
+import LoginFormDialog from './components/LoginFormDialog'
 
 Vue.use(Vuex)
 Vue.use(Vuetify)
+
+Vue.component('login-form-dialog', LoginFormDialog)
 
 Vue.config.productionTip = false
 
