@@ -8,16 +8,17 @@
     >
       <v-list dense class="pt-0">
         <v-list-tile
-          v-for="item in items"
-          :key="item.title"
-          @click="sayItemTitle(item)"
+          v-for="item in pages"
+          :key="item.id"
+          @click="$router.push('/' + item.code)"
         >
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
-
           <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            <v-list-tile-title>
+              {{ item.title }}
+            </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -32,7 +33,10 @@
         v-if="currentUser"
         @click.stop="drawer = !drawer"
       ></v-toolbar-side-icon>
-      <v-toolbar-title>Личный кабинет</v-toolbar-title>
+      <v-toolbar-title
+        class="pointer"
+        @click="$router.push('/')"
+      >Личный кабинет</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-avatar
         v-if="currentUser"
@@ -75,62 +79,19 @@ export default {
       title: 'Title',
       drawer: true,
       items: [
-        {
-          title: 'Учебные планы',
-          icon: 'table'
-        },
-        {
-          title: 'Запись на курсы по выбору',
-          icon: 'table'
-        },
-        {
-          title: 'Форум',
-          icon: 'table'
-        },
-        {
-          title: 'Успеваемость',
-          icon: 'table'
-        },
-        {
-          title: 'Информация о темах курсовых и дипломных работ',
-          icon: 'table'
-        },
-        {
-          title: 'Ссылка',
-          icon: 'table'
-        },
-        {
-          title: 'Список приказов',
-          icon: 'table'
-        },
-        {
-          title: 'Моё портфолио',
-          icon: 'table'
-        },
-        {
-          title: 'Расписание',
-          icon: 'table'
-        },
-        {
-          title: 'Стипендии и прочие выплаты',
-          icon: 'table'
-        },
-        {
-          title: 'Учебно-методические материалы',
-          icon: 'table'
-        }
+
       ]
     }
   },
   computed: {
     currentUser () {
       return this.$store.getters.getCurrentUser
+    },
+    pages () {
+      return this.$store.getters.getAllPages
     }
   },
   methods: {
-    sayItemTitle (item) {
-      alert(item.title)
-    },
     toggleLoginForm () {
       this.$store.dispatch('toggleLoginFormDialog')
     },
