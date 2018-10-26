@@ -3,68 +3,79 @@ export default {
     pages: [
       {
         id: 1,
-        code: 'plans',
+        path: '/plans',
         title: 'Учебные планы',
+        text: 'Контент',
         icon: 'table'
       },
       {
         id: 2,
-        code: 'entry-for-courses',
+        path: '/entry-for-courses',
         title: 'Запись на курсы по выбору',
+        text: 'Контент',
         icon: 'table'
       },
       {
         id: 3,
-        code: 'forum',
+        path: '/forum',
         title: 'Форум',
+        text: 'Контент',
         icon: 'table'
       },
       {
         id: 4,
-        code: 'progress',
+        path: '/progress',
         title: 'Успеваемость',
+        text: 'Контент',
         icon: 'table'
       },
       {
         id: 5,
-        code: 'information',
+        path: '/information',
         title: 'Информация о темах курсовых и дипломных работ',
+        text: 'Контент',
         icon: 'table'
       },
       {
         id: 6,
-        code: 'link',
+        path: '/link',
         title: 'Ссылка',
+        text: 'Контент',
         icon: 'table'
       },
       {
         id: 7,
-        code: 'orders-list',
+        path: '/orders-list',
         title: 'Список приказов',
+        text: 'Контент',
         icon: 'table'
       },
       {
         id: 8,
-        code: 'my-portfolio',
+        path: '/my-portfolio',
         title: 'Моё портфолио',
+        text: 'Контент',
         icon: 'table'
       },
       {
         id: 9,
-        code: 'schedule',
+        path: '/schedule',
         title: 'Расписание',
+        text: 'Контент',
         icon: 'table'
       },
       {
         id: 10,
-        code: 'payments',
+        path: '/payments',
         title: 'Стипендии и прочие выплаты',
+        text: 'Контент',
         icon: 'table'
       },
       {
         id: 11,
-        code: 'educational-materials',
+        path: '/educational-materials',
         title: 'Учебно-методические материалы',
+        text: 'Контент',
         icon: 'table'
       }
     ]
@@ -75,6 +86,6 @@ export default {
     getAllPages (state) {
       return state.pages
     },
-    getPageByCode: state => code => state.pages.find(page => page.code === code)
+    getPageByPath: state => path => state.pages.find(page => page.path === path)
   }
 }

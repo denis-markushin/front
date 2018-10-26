@@ -10,7 +10,7 @@
         <v-list-tile
           v-for="item in pages"
           :key="item.id"
-          @click="$router.push('/' + item.code)"
+          @click="$router.push(item.path)"
         >
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -49,21 +49,18 @@
         >
       </v-avatar>
       {{ currentUser ? currentUser.name : ''}}
-
       <v-icon
         class="pointer ml-4"
         left
         v-if="currentUser"
         @click="logout"
       >exit_to_app</v-icon>
-
       <v-icon
         v-if="!currentUser"
         left
         class="pointer"
         @click="toggleLoginForm"
       >person</v-icon>
-
     </v-toolbar>
     <!-- Content -->
     <router-view></router-view>
