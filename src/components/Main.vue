@@ -33,8 +33,11 @@
           <span class="hidden-sm-and-down">Личный кабинет</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn flat>
-          Максим Абрамов
+        <v-btn
+          flat
+          v-if="currentUser"
+        >
+          {{ currentUser.name }}
           <v-icon>person</v-icon>
         </v-btn>
       </v-toolbar>
@@ -106,8 +109,8 @@ export default {
     }
   },
   computed: {
-    summ () {
-      return 1 + 1
+    currentUser () {
+      return this.$store.getters.getCurrentUser
     }
   },
   methods: {
