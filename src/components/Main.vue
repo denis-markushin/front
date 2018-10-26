@@ -1,6 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer
+      v-if="currentUser"
       v-model="drawer"
       fixed
       app
@@ -27,10 +28,11 @@
       app
       fixed
     >
-      <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <span class="hidden-sm-and-down">Личный кабинет</span>
-      </v-toolbar-title>
+      <v-toolbar-side-icon
+        v-if="currentUser"
+        @click.stop="drawer = !drawer"
+      ></v-toolbar-side-icon>
+      <v-toolbar-title>Личный кабинет</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-avatar
         v-if="currentUser"
@@ -44,14 +46,12 @@
       </v-avatar>
       {{ currentUser ? currentUser.name : ''}}
 
-      <v-btn
-        flat
+      <v-icon
+        class="pointer ml-4"
+        left
         v-if="currentUser"
         @click="logout"
-      >
-        <v-icon left>exit_to_app</v-icon>
-        Выход
-      </v-btn>
+      >exit_to_app</v-icon>
 
       <v-icon
         v-if="!currentUser"
