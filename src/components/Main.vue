@@ -1,11 +1,13 @@
 <template>
-  <v-content>
-    <v-container fluid fill-height>
-      <v-layout justify-center align-center>
-        Главная страница
-      </v-layout>
-    </v-container>
-  </v-content>
+  <div>
+    <v-content>
+      <v-container fluid fill-height>
+        <v-layout justify-center align-center>
+          Главная страница
+        </v-layout>
+      </v-container>
+    </v-content>
+  </div>
 </template>
 
 <script>

@@ -5,22 +5,44 @@
       v-model="drawer"
       fixed
       app
+      v-bind:style="{ display: 'inline-flex' }"
     >
       <v-list dense class="pt-0">
+
         <v-list-tile
-          v-for="item in pages"
-          :key="item.id"
-          @click="$router.push(item.path)"
+          v-for="page in pages"
+          :key="page.id"
+          @click="$router.push(page.path)"
         >
           <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>{{ page.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>
-              {{ item.title }}
+              {{ page.title }}
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+
+        <v-list-group
+          no-action
+          sub-group
+          value="true"
+        >
+          <v-list-tile slot="activator">
+            <v-list-tile-title>Admin</v-list-tile-title>
+          </v-list-tile>
+
+          <v-list-tile
+            v-for="adminPage in adminPages"
+            :key="adminPage.id"
+            @click="$router.push(adminPage.path)"
+          >
+            <v-list-tile-title>{{ adminPage.title }}</v-list-tile-title>
+            <v-list-tile-action></v-list-tile-action>
+          </v-list-tile>
+        </v-list-group>
+
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
@@ -63,8 +85,12 @@
       >person</v-icon>
     </v-toolbar>
     <!-- Content -->
-    <router-view></router-view>
-    <login-form-dialog></login-form-dialog>
+    <router-view/>
+    <login-form-dialog/>
+    <div
+      v-if="overlay"
+      class="overlay"
+    ></div>
   </v-app>
 </template>
 
@@ -86,6 +112,12 @@ export default {
     },
     pages () {
       return this.$store.getters.getAllPages
+    },
+    adminPages () {
+      return this.$store.getters.getAllAdminPages
+    },
+    overlay () {
+      return this.$store.getters.getOverlayState
     }
   },
   methods: {
@@ -100,6 +132,15 @@ export default {
 </script>
 
 <style>
+  .overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, .3);
+  }
   .pointer{
     cursor: pointer;
   }

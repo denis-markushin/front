@@ -37,7 +37,11 @@ export default {
   methods: {
     testLogin () {
       this.$store.dispatch('toggleLoginFormDialog')
-      this.$store.dispatch('testLogin')
+      this.$store.dispatch('toggleOverlay')
+      this.$store.dispatch('testLogin').then(data => {
+        console.log(data)
+        this.$store.dispatch('toggleOverlay')
+      })
     }
   }
 }

@@ -1,14 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import Vuetify from 'vuetify'
 import 'babel-polyfill'
 import router from './router'
 import store from './store'
 import 'vuetify/dist/vuetify.min.css'
 import App from './App'
-import Main from './components/Main'
 import LoginFormDialog from './components/LoginFormDialog'
 
+Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 Vue.use(Vuetify)
 
@@ -22,8 +24,12 @@ new Vue({
   router,
   store,
   components: {
-    App,
-    Main
+    App
   },
-  template: '<App/>'
+  template: '<App/>',
+  mounted () {
+    axios
+      .get('http://localhost:62714/hello')
+      .then(response => console.log(response.data))
+  }
 })

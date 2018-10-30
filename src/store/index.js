@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import users from './users'
 import pages from './pages'
 import loginFormDialog from './loginFormDialog'
+import overlay from './overlay'
+import adminPages from './adminPages'
 
 Vue.use(Vuex)
 
@@ -14,6 +16,8 @@ export default new Vuex.Store({
   modules: {
     users,
     pages,
-    loginFormDialog
+    adminPages,
+    loginFormDialog,
+    overlay
   }
 })
