@@ -3,18 +3,18 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Vuetify from 'vuetify'
-import 'babel-polyfill'
-import router from './router'
-import store from './store'
+import router from './router/index.js'
+import store from './store/index.js'
 import 'vuetify/dist/vuetify.min.css'
-import App from './App'
-import LoginFormDialog from './components/LoginFormDialog'
+import App from './App1'
+import VueRouter from 'vue-router'
 
+Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 Vue.use(Vuetify)
 
-Vue.component('login-form-dialog', LoginFormDialog)
+Vue.component()
 
 Vue.config.productionTip = false
 
@@ -26,10 +26,5 @@ new Vue({
   components: {
     App
   },
-  template: '<App/>',
-  mounted () {
-    axios
-      .get('http://localhost:62714/hello')
-      .then(response => console.log(response.data))
-  }
+  template: '<App/>'
 })

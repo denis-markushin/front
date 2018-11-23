@@ -1,25 +1,27 @@
+import axios from 'axios'
+
 export default {
   state: {
     user: null
-    // user: null
   },
   mutations: {
-    testLogin (state) {
-      state.user = {
-        id: 1,
-        name: 'Максим Абрамов'
-      }
+    login (state, user) {
+      state.user = user
     },
-    testLogout (state) {
+    logout (state) {
       state.user = null
     }
   },
   actions: {
-    testLogin ({ commit }) {
-      commit('testLogin')
+    login ({ commit }) {
+      axios.get('/auth/users/current')
+        .then(function (response) {
+          console.log(response.data)
+          commit('login', response.data)
+        })
     },
-    testLogout ({ commit }) {
-      commit('testLogout')
+    logout ({ commit }) {
+      commit('logout')
     }
   },
   getters: {

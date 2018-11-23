@@ -86,7 +86,6 @@
     </v-toolbar>
     <!-- Content -->
     <router-view/>
-    <login-form-dialog/>
     <div
       v-if="overlay"
       class="overlay"
@@ -121,11 +120,8 @@ export default {
     }
   },
   methods: {
-    toggleLoginForm () {
-      this.$store.dispatch('toggleLoginFormDialog')
-    },
     logout () {
-      this.$store.dispatch('testLogout')
+      this.$store.dispatch('logout')
     }
   }
 }
